@@ -70,6 +70,13 @@ var auditTask = function(taskEl) {
     }
 };
 
+// check due date automatically every 30 minutes
+setInterval(function() {
+  $(".card .list-group-item").each(function(index, el) {
+    auditTask(el);
+  });
+}, (1000 * 60) * 30);
+
 $(".list-group").on("click", "p", function() {
   var text = $(this)
   .text()
