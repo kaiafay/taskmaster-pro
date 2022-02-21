@@ -55,14 +55,7 @@ var auditTask = function(taskEl) {
 
   // remove any old classes from element
   $(taskEl).removeClass("list-group-item-warning list-group-item-danger");
-
-  // apply new class if task is near/over due date
-  // if (moment().isAfter(time)) {
-  //   $(taskEl).addClass("list-group-item-danger");
-  // } else if (Math.abs(moment().diff(time, "days")) <= 2) {
-  //   $(taskEl).addClass("list-group-item warning");
-  // }
-    // apply new class if task is near/over due date (correct)
+    // apply new class if task is near/over due date
     if (moment().isAfter(time)) {
       $(taskEl).addClass("list-group-item-danger");
     } else if (Math.abs(moment().diff(time, "days")) <= 2) {
@@ -191,9 +184,11 @@ $(".card .list-group").sortable({
   helper: "clone",
   activate: function(event) {
    $(this).addClass("dropover");
+   $(".bottom-trash").addClass("bottom-trash-drag");
   },
   deactivate: function(event) {
     $(this).removeClass("dropover");
+    $(".bottom-trash").removeClass("bottom-trash-drag");
   },
   over: function(event) {
    $(event.target).addClass("dropover-active");
